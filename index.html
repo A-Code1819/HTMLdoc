@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML Documentation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <h1>HTML Docs</h1>
+  <ul>
+    <li><a href="#intro">Introduction</a></li>
+    <li><a href="#elements">Elements</a></li>
+    <li><a href="#forms">Forms</a></li>
+  </ul>
+  <button class="toggle-btn" onclick="toggleDark()">Toggle Mode</button>
+</nav>
+
+<main>
+
+<section id="intro">
+  <h2>Introduction to HTML</h2>
+  <p>
+    HTML (HyperText Markup Language) is the standard language used to structure content on the web.
+    It provides the skeleton of every website.
+  </p>
+</section>
+
+<section id="elements">
+  <h2>Common HTML Elements</h2>
+
+  <div class="tabs">
+    <div class="tab-buttons">
+      <button class="active" onclick="showTab(0,this)">Headings</button>
+      <button onclick="showTab(1,this)">Paragraph</button>
+      <button onclick="showTab(2,this)">Links</button>
+    </div>
+
+    <div class="tab-content active">
+      <pre><code>&lt;h1&gt;Main Heading&lt;/h1&gt;
+&lt;h2&gt;Sub Heading&lt;/h2&gt;</code></pre>
+    </div>
+
+    <div class="tab-content">
+      <pre><code>&lt;p&gt;This is a paragraph.&lt;/p&gt;</code></pre>
+    </div>
+
+    <div class="tab-content">
+      <pre><code>&lt;a href="https://example.com"&gt;Visit Site&lt;/a&gt;</code></pre>
+    </div>
+  </div>
+</section>
+
+<section id="forms">
+  <h2>HTML Forms Example</h2>
+
+  <pre><code>&lt;form&gt;
+  &lt;label&gt;Name&lt;/label&gt;
+  &lt;input type="text" placeholder="Enter name"&gt;
+
+  &lt;label&gt;Email&lt;/label&gt;
+  &lt;input type="email" placeholder="Enter email"&gt;
+
+  &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+
+</section>
+
+</main>
+
+<footer>
+  © 2026 Hanna | Front-End Project
+</footer>
+
+<script>
+function toggleDark(){
+  document.body.classList.toggle("dark");
+}
+
+/* TAB SWITCH */
+function showTab(index, button){
+  const tabs = button.closest(".tabs");
+  const buttons = tabs.querySelectorAll("button");
+  const contents = tabs.querySelectorAll(".tab-content");
+
+  buttons.forEach(btn => btn.classList.remove("active"));
+  contents.forEach(content => content.classList.remove("active"));
+
+  button.classList.add("active");
+  contents[index].classList.add("active");
+}
+
+/* SCROLL ANIMATION */
+const sections = document.querySelectorAll("section");
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
+    }
+  });
+}, { threshold: 0.15 });
+
+sections.forEach(section => observer.observe(section));
+</script>
+
+</body>
+</html>
